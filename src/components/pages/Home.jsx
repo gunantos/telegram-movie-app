@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Header from '../common/Header'
-import MovieGridMantine from '../common/MovieGridMantine'
+import TabNavigation from '../common/TabNavigation'
+import SearchBar from '../common/SearchBar'
+import FilterControls from '../common/FilterControls'
+import MovieGrid from '../common/MovieGrid'
 import { MOVIE_TABS } from '../../utils/constants'
 import { mockMovies } from '../../data/mockMovies'
 import { motion } from 'motion/react'
@@ -50,24 +53,25 @@ const Home = () => {
     <div className="home">
       <Header title="Movie App" />
 
-      <motion.div
-        key={`${activeTab}-${sort}-${date}-${search}`}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
-      >
-        <MovieGridMantine
-          movies={filteredMovies}
-          isLoading={isLoading}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          search={search}
-          setSearch={setSearch}
+      <TabNavigation
+        tabs={[{ key: MOVIE_TABS.SHORTS, label: 'Shorts' },{ key: MOVIE_TABS.FILM, label: 'Film' },{ key: MOVIE_TABS.SERIES, label: 'Series' },{ key: MOVIE_TABS.CARTOON, label: 'Cartun' }]}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
+
+      <div className="search-controls container">
+        <SearchBar value={search} onChange={setSearch} placeholder="Cari judul..." />
+        <FilterControls
           sort={sort}
-          setSort={setSort}
           date={date}
-          setDate={setDate}
+          onSortChange={setSort}
+          onDateChange={setDate}
+          onReset={() => { setSearch(''); setSort('views_desc'); setDate('any'); }}
         />
+      </div>
+
+      <motion.div key={`${activeTab}-${sort}-${date}-${search}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+        <MovieGrid movies={filteredMovies} isLoading={isLoading} />
       </motion.div>
     </div>
   )
