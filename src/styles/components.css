@@ -173,10 +173,13 @@
 /* Movie Grid */
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* Improved responsive grid - prevents cards from becoming too large */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   min-height: 200px;
+  justify-content: center;
+  max-width: 100%;
 }
 
 .movie-grid.loading {
@@ -195,6 +198,9 @@
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
+  /* Prevent cards from becoming too wide on desktop */
+  max-width: 200px;
+  width: 100%;
 }
 
 .movie-card:hover {
