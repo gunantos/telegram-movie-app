@@ -1,11 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Header from '../common/Header'
-import TabNavigation from '../common/TabNavigation'
-import SearchBar from '../common/SearchBar'
-import FilterControls from '../common/FilterControls'
-import MovieGrid from '../common/MovieGrid'
+import MovieGridMantine from '../common/MovieGridMantine'
 import { MOVIE_TABS } from '../../utils/constants'
 import { mockMovies } from '../../data/mockMovies'
+import { motion } from 'motion/react'
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(MOVIE_TABS.FILM)
@@ -14,10 +12,9 @@ const Home = () => {
   const [date, setDate] = useState('any')
   const [isLoading, setIsLoading] = useState(false)
 
-  // Simulate fetching data (replace with API call later)
   useEffect(() => {
     setIsLoading(true)
-    const timer = setTimeout(() => setIsLoading(false), 400)
+    const timer = setTimeout(() => setIsLoading(false), 300)
     return () => clearTimeout(timer)
   }, [activeTab, search, sort, date])
 
@@ -49,46 +46,29 @@ const Home = () => {
     return items
   }, [activeTab, search, sort, date])
 
-  const handleReset = () => {
-    setSearch('')
-    setSort('views_desc')
-    setDate('any')
-  }
-
   return (
     <div className="home">
       <Header title="Movie App" />
 
-      <TabNavigation
-        tabs={[{
-          key: MOVIE_TABS.SHORTS,
-          label: 'Shorts'
-        }, {
-          key: MOVIE_TABS.FILM,
-          label: 'Film'
-        }, {
-          key: MOVIE_TABS.SERIES,
-          label: 'Series'
-        }, {
-          key: MOVIE_TABS.CARTOON,
-          label: 'Cartun'
-        }]}
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-      />
-
-      <div className="search-controls container">
-        <SearchBar value={search} onChange={setSearch} placeholder="Cari judul..." />
-        <FilterControls
+      <motion.div
+        key={`${activeTab}-${sort}-${date}-${search}`}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+      >
+        <MovieGridMantine
+          movies={filteredMovies}
+          isLoading={isLoading}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          search={search}
+          setSearch={setSearch}
           sort={sort}
+          setSort={setSort}
           date={date}
-          onSortChange={setSort}
-          onDateChange={setDate}
-          onReset={handleReset}
+          setDate={setDate}
         />
-      </div>
-
-      <MovieGrid movies={filteredMovies} isLoading={isLoading} />
+      </motion.div>
     </div>
   )
 }
