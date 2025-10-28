@@ -2,22 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './styles/globals.css'
+import './styles/components.css'
+import './styles/responsive.css'
+import './styles/bootstrap-grid.css'
 
 // Telegram Mini App SDK initialization
 import { initMiniApp, mockTelegramEnv, parseInitData } from '@telegram-apps/sdk-react'
 
 const initializeTelegramSDK = async () => {
   try {
-    // Attempt to initialize the real Telegram environment
-    console.log('Initializing Telegram environment')
     const [miniApp] = initMiniApp()
     await miniApp.ready()
-    console.log('Telegram environment initialized successfully')
   } catch (error) {
-    // In case of an error, initialize a mock environment for development
-    console.error('Error initializing Telegram:', error)
-    console.log('Initializing mock Telegram environment for development')
-    
     const initDataRaw = new URLSearchParams([
       ['user', JSON.stringify({
         id: 12345678,
@@ -56,15 +52,11 @@ const initializeTelegramSDK = async () => {
       version: '7.2',
       platform: 'web',
     })
-    
-    console.log('Mock Telegram environment initialized')
   }
 }
 
-// Initialize Telegram SDK
 initializeTelegramSDK()
 
-// Render React app
 const container = document.getElementById('root')
 const root = ReactDOM.createRoot(container)
 
