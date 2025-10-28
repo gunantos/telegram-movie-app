@@ -1,0 +1,144 @@
+/* Bootstrap-like Responsive Grid System for Movie Cards */
+
+/* Container */
+.container-fluid {
+  width: 100%;
+  padding: 0 12px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Row */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -6px;
+  margin-right: -6px;
+}
+
+/* Column Base */
+[class*="col-"] {
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+}
+
+/* Default (XS) - 2 columns */
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* SM - Small (≥576px) - 6 columns */
+@media (min-width: 576px) {
+  .col-sm-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+}
+
+/* MD - Medium (≥768px) - 4 columns */
+@media (min-width: 768px) {
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+/* LG - Large (≥992px) - 3 columns */
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+/* XL - Extra Large (≥1200px) - 2 columns */
+@media (min-width: 1200px) {
+  .col-xl-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* Telegram Mini App Specific Overrides */
+@media (min-width: 768px) {
+  .app {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (min-width: 1024px) {
+  .app {
+    max-width: 450px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .app {
+    max-width: 400px;
+  }
+}
+
+/* Alignment Utilities */
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-start {
+  justify-content: flex-start;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-around {
+  justify-content: space-around;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+.align-items-stretch {
+  align-items: stretch;
+}
+
+/* Additional Responsive Utilities */
+@media (min-width: 480px) {
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+@media (min-width: 640px) {
+  .col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}

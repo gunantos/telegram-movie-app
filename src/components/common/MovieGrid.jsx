@@ -4,8 +4,8 @@ import MovieCard from './MovieCard'
 const MovieGrid = ({ movies = [], isLoading }) => {
   if (isLoading) {
     return (
-      <div className="movie-container">
-        <div className="movie-row justify-content-center">
+      <div className="container-fluid">
+        <div className="row justify-content-center">
           <div className="col-12">
             <div className="component-loading">
               <div className="spinner" />
@@ -18,8 +18,8 @@ const MovieGrid = ({ movies = [], isLoading }) => {
 
   if (!movies.length) {
     return (
-      <div className="movie-container">
-        <div className="movie-row justify-content-center">
+      <div className="container-fluid">
+        <div className="row justify-content-center">
           <div className="col-12">
             <div className="empty-state">
               <svg className="empty-state-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,10 +36,10 @@ const MovieGrid = ({ movies = [], isLoading }) => {
   }
 
   return (
-    <div className="movie-container">
-      <div className="movie-row">
+    <div className="container-fluid">
+      <div className="row">
         {movies.map(movie => (
-          <div key={movie.id} className="movie-col">
+          <div key={movie.id} className="col-6 col-sm-2 col-md-3 col-lg-4 col-xl-6">
             <MovieCard movie={movie} />
           </div>
         ))}

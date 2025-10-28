@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { SDKProvider } from '@telegram-apps/sdk-react'
 import Home from './components/pages/Home'
 import useTelegramTheme from './hooks/useTelegramTheme'
+import './styles/globals.css'
 import './styles/components.css'
 import './styles/responsive.css'
+import './styles/bootstrap-grid.css'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
