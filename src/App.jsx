@@ -1,43 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { MantineProvider } from '@mantine/core'
 import { SDKProvider } from '@telegram-apps/sdk-react'
 import Home from './components/pages/Home'
 import useTelegramTheme from './hooks/useTelegramTheme'
 import './styles/globals.css'
 import './styles/components.css'
 import './styles/responsive.css'
-import './styles/bootstrap-grid.css'
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
   const telegramTheme = useTelegramTheme()
-
-  useEffect(() => {
-    // Simulate app initialization
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (isLoading) {
-    return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p>Loading Movie App...</p>
-      </div>
-    )
-  }
 
   return (
     <SDKProvider acceptCustomStyles debug={import.meta.env.DEV}>
-      <div className="app" style={{
-        backgroundColor: telegramTheme.bgColor,
-        color: telegramTheme.textColor,
-        minHeight: '100vh'
+      <MantineProvider defaultColorScheme="dark" theme={{
+        primaryColor: 'indigo',
+        colors: {
+          dark: [
+            '#C1C2C5','#A6A7AB','#909296','#5c5f66','#373A40','#2C2E33','#25262b','#1A1B1E','#141517','#101113'
+          ]
+        }
       }}>
-        <Home />
-      </div>
+        <div className="app" style={{
+          backgroundColor: telegramTheme.bgColor,
+          color: telegramTheme.textColor,
+          minHeight: '100vh'
+        }}>
+          <Home />
+        </div>
+      </MantineProvider>
     </SDKProvider>
   )
 }

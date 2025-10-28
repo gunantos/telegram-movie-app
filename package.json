@@ -1,7 +1,7 @@
 {
   "name": "telegram-movie-app",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Mini aplikasi Telegram untuk streaming movie dengan React.js",
   "scripts": {
@@ -13,10 +13,12 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@mantine/core": "^7.12.1",
     "@telegram-apps/sdk-react": "^1.0.0",
+    "lucide-react": "^0.400.0",
+    "motion": "^11.13.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lucide-react": "^0.400.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
