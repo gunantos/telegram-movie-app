@@ -1,0 +1,23 @@
+{
+  "name": "Telegram Movie App",
+  "short_name": "MovieApp",
+  "description": "Mini aplikasi Telegram untuk streaming movie",
+  "start_url": "/telegram-movie-app/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/telegram-movie-app/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/telegram-movie-app/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["entertainment", "multimedia"]
+}
