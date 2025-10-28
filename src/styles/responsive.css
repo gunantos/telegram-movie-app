@@ -1,0 +1,294 @@
+/* Telegram Mini App Responsive Styles */
+
+/* Base responsive breakpoints for Telegram Mini Apps */
+@media screen and (max-width: 320px) {
+  :root {
+    --spacing-md: 12px;
+    --spacing-lg: 18px;
+    --font-size-base: 0.9rem;
+  }
+}
+
+/* Standard mobile (Telegram recommended size) */
+@media screen and (min-width: 350px) and (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .movie-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  
+  .tab-navigation {
+    gap: var(--spacing-sm);
+  }
+  
+  .tab-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Larger mobile screens */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .movie-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  
+  .search-controls {
+    flex-direction: row;
+    gap: var(--spacing-md);
+  }
+}
+
+/* Tablet and desktop (for testing outside Telegram) */
+@media screen and (min-width: 769px) {
+  .app {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 100vh;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+  
+  .movie-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .tab-navigation {
+    margin: var(--spacing-sm) 0;
+  }
+  
+  .movie-card {
+    min-height: auto;
+  }
+  
+  .movie-card-image {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .movie-card-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch-friendly adjustments */
+@media (pointer: coarse) {
+  .btn {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  .tab-button {
+    min-height: 44px;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+  
+  .movie-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.1);
+  }
+  
+  .search-input {
+    min-height: 48px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support (default for Telegram) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Already optimized for dark mode */
+  }
+}
+
+/* Light mode adjustments (if Telegram theme is light) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --tg-bg-color: var(--tg-theme-bg-color, #ffffff);
+    --tg-text-color: var(--tg-theme-text-color, #000000);
+    --tg-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f8f9fa);
+  }
+  
+  .card {
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  .card:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Container queries for modern browsers */
+@container (max-width: 400px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .search-controls {
+    flex-direction: column;
+  }
+}
+
+@container (min-width: 401px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* Print styles (hide for Mini Apps) */
+@media print {
+  .app {
+    display: none;
+  }
+}
+
+/* Focus management for keyboard navigation */
+@media (any-hover: hover) {
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .tab-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* No hover support (touch devices) */
+@media (hover: none) {
+  .btn:hover,
+  .movie-card:hover,
+  .tab-button:hover {
+    transform: none;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .movie-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Safe area adjustments for devices with notches */
+@supports (padding: max(0px)) {
+  .header {
+    padding-top: max(var(--spacing-md), env(safe-area-inset-top));
+    padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+    padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+  }
+  
+  .container {
+    padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+    padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+  
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .tab-button.active {
+    box-shadow: 0 0 0 3px var(--primary-color);
+  }
+}
+
+/* Loading state responsive adjustments */
+.loading-container {
+  padding: var(--spacing-lg);
+}
+
+@media screen and (max-width: 350px) {
+  .loading-container {
+    padding: var(--spacing-md);
+  }
+  
+  .loading-spinner {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Animation performance optimizations */
+.movie-card,
+.btn,
+.tab-button {
+  will-change: transform;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+/* Scrolling optimizations */
+.movie-grid,
+.tab-navigation {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Text selection improvements */
+.movie-card-title,
+.movie-card-info {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Image loading states */
+.movie-card-image {
+  background-color: rgba(255, 255, 255, 0.05);
+  background-image: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.movie-card-image.loaded {
+  background-image: none;
+  animation: none;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
