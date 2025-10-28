@@ -170,10 +170,9 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Movie Grid */
+/* Legacy Movie Grid - Keep for fallback */
 .movie-grid {
   display: grid;
-  /* Improved responsive grid - prevents cards from becoming too large */
   grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
   gap: var(--spacing-md);
   padding: var(--spacing-md);
@@ -187,7 +186,7 @@
   pointer-events: none;
 }
 
-/* Movie Card */
+/* Movie Card - Updated for Bootstrap Grid */
 .movie-card {
   display: flex;
   flex-direction: column;
@@ -198,9 +197,9 @@
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
-  /* Prevent cards from becoming too wide on desktop */
-  max-width: 200px;
+  /* Remove fixed max-width to allow responsive grid sizing */
   width: 100%;
+  height: auto;
 }
 
 .movie-card:hover {
